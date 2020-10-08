@@ -1,0 +1,31 @@
+{
+  "name": "graphql-mesh-auth",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "prestart": "node swagger.js | json > public/swagger.json",
+    "predev": "yarn prestart",
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "mesh": "graphql-mesh serve"
+  },
+  "dependencies": {
+    "@graphql-mesh/cli": "^0.11.4",
+    "@graphql-mesh/openapi": "^0.9.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "graphql": "^15.3.0",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "@types/swagger-ui-dist": "^3.30.0",
+    "json": "^10.0.0",
+    "nodemon": "^2.0.4",
+    "swagger-jsdoc": "^4.2.3",
+    "swagger-ui-dist": "^3.35.0",
+    "swagger-ui-express": "^4.1.4"
+  }
+}
