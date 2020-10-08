@@ -1,4 +1,5 @@
 var express = require('express');
+var chalk = require('chalk');
 var router = express.Router();
 
 /**
@@ -33,6 +34,10 @@ var router = express.Router();
  *               $ref: '#/definitions/User'
  */
 router.get('/', function (req, res, next) {
+  console.info(
+    chalk.blue('authorization:', JSON.stringify(req.header('authorization'))),
+  );
+
   res.json({ id: 0, name: 'Jane' });
 });
 

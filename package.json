@@ -3,29 +3,36 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "prestart": "node swagger.js | json > public/swagger.json",
-    "predev": "yarn prestart",
-    "start": "node ./bin/www",
+    "preserver": "node swagger.js | json > public/swagger.json",
+    "server": "node ./bin/www",
+    "mesh": "wait-on http://localhost:3000 && graphql-mesh serve",
+    "start": "concurrently --kill-others-on-fail --colors --prefix-colors red,green yarn:server yarn:mesh",
+    "predev": "yarn preserver",
     "dev": "nodemon ./bin/www",
-    "mesh": "graphql-mesh serve"
+    "get-users": "node scripts/getUsers.js"
   },
   "dependencies": {
     "@graphql-mesh/cli": "^0.11.4",
     "@graphql-mesh/openapi": "^0.9.0",
+    "chalk": "^4.1.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "graphql": "^15.3.0",
+    "graphql-request": "^3.1.0",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@types/swagger-ui-dist": "^3.30.0",
+    "concurrently": "^5.3.0",
     "json": "^10.0.0",
     "nodemon": "^2.0.4",
     "swagger-jsdoc": "^4.2.3",
     "swagger-ui-dist": "^3.35.0",
-    "swagger-ui-express": "^4.1.4"
+    "swagger-ui-express": "^4.1.4",
+    "wait-on": "^5.2.0"
   }
 }
